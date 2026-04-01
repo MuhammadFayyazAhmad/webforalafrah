@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#cfe6f2",
+              "primary": "#004e5d",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "background": "#f8f9fa",
+              "on-primary-fixed-variant": "#004e5d",
+              "outline-variant": "#bec8cc",
+              "secondary-fixed-dim": "#b4cad6",
+              "surface-dim": "#d9dadb",
+              "primary-fixed": "#afecff",
+              "primary-fixed-dim": "#88d1e7",
+              "surface-container-low": "#f3f4f5",
+              "primary-container": "#08677a",
+              "error": "#ba1a1a",
+              "tertiary": "#6a3b05",
+              "tertiary-fixed": "#ffdcc1",
+              "on-surface": "#191c1d",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#86521d",
+              "inverse-on-surface": "#f0f1f2",
+              "surface-tint": "#09677a",
+              "on-primary-container": "#99e3f9",
+              "on-error": "#ffffff",
+              "outline": "#6f797c",
+              "on-tertiary-fixed-variant": "#6a3b06",
+              "surface-variant": "#e1e3e4",
+              "on-primary-fixed": "#001f27",
+              "on-secondary-fixed": "#071e27",
+              "surface-container-high": "#e7e8e9",
+              "surface": "#f8f9fa",
+              "on-background": "#191c1d",
+              "inverse-primary": "#88d1e7",
+              "on-secondary-fixed-variant": "#354a53",
+              "on-surface-variant": "#3f484b",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#ffcfa7",
+              "on-secondary-container": "#526772",
+              "tertiary-fixed-dim": "#feb87a",
+              "on-primary": "#ffffff",
+              "surface-bright": "#f8f9fa",
+              "secondary": "#4c616c",
+              "inverse-surface": "#2e3132",
+              "surface-container": "#edeeef",
+              "on-tertiary-fixed": "#2e1600",
+              "secondary-container": "#cfe6f2",
+              "surface-container-highest": "#e1e3e4",
+              "on-error-container": "#93000a",
+              "dark-teal": "#0a4b55"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(20px);
+        }
+        .fade-slider-container img {
+            transition: opacity 1.5s ease-in-out;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50%)); }
+        }
+        .animate-scroll {
+            animation: scroll 40s linear infinite;
+        }
+        .animate-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        /* Circular Carousel Styles */
+        .circle-carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+            position: relative;
+        }
+        .carousel-circle {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: absolute;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 8px solid white;
+        }
+        .carousel-circle.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 10;
+        }
+        .carousel-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Custom Instagram Icon Style */
+        .instagram-icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.125em;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-primary/95 backdrop-blur-lg shadow-[0_20px_40px_rgba(0,0,0,0.1)] border-b border-white/10">
+<nav class="flex justify-between items-center px-8 py-5 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-3">
+<img alt="Alafrah Design Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uiEBX3HxvSjxhGC6dX0zQrS9eQOxs2RNTATzuS-o1oNlCAxGxvN6uberioc8iMKJovBc62paLUw0bBNAjJGq5iM5acQtWKzLQH8doljdOQUaOcc7f-2W_xH5dR0ZAhhPL3_D65_g14O6EBlYrlZhrzWc3xS6q2fnEQMtTos868DoojOMQUBcCLeRIa6hov6nthnm_2pbbJ35Y5_AX3ZDcOoV_0ieqOYkMYfQfLWA1ieZrChbu7Lwak3R2uPW9r3UvzoqCqgAfhR"/>
+<span class="text-xl font-headline font-extrabold tracking-tight text-white">Alafrah Design</span>
+</div>
+<div class="hidden md:flex items-center space-x-10">
+<a class="font-manrope font-bold tracking-tight text-sm uppercase text-white/70 hover:text-white transition-colors" href="#">Home</a>
+<a class="font-manrope font-bold tracking-tight text-sm uppercase text-white border-b-2 border-white pb-1" href="#">Services</a>
+<a class="font-manrope font-bold tracking-tight text-sm uppercase text-white/70 hover:text-white transition-colors" href="#">Contact Us</a>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative bg-primary overflow-hidden pt-24 pb-32">
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-fixed via-transparent to-transparent"></div>
+<div class="max-w-screen-2xl mx-auto px-8 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<span class="inline-block px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label text-xs font-bold tracking-widest uppercase">Premium Print Solutions</span>
+<h1 class="font-headline font-extrabold text-5xl md:text-7xl text-on-primary tracking-tighter leading-[1.1]">Precision in every <br/>impression.</h1>
+<p class="text-primary-fixed text-lg md:text-xl font-body leading-relaxed max-w-xl">From high-end perfumery to corporate luxury, Alafrah Design delivers structural integrity and aesthetic excellence to your brand's physical touchpoints.</p>
+</div>
+<div class="hidden lg:flex justify-end">
+<div class="w-full max-w-md aspect-square overflow-hidden flex items-center justify-center bg-transparent border-2 border-white rounded-xl p-2 shadow-2xl">
+<img alt="Alafrah Design Brand Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uiEBX3HxvSjxhGC6dX0zQrS9eQOxs2RNTATzuS-o1oNlCAxGxvN6uberioc8iMKJovBc62paLUw0bBNAjJGq5iM5acQtWKzLQH8doljdOQUaOcc7f-2W_xH5dR0ZAhhPL3_D65_g14O6EBlYrlZhrzWc3xS6q2fnEQMtTos868DoojOMQUBcCLeRIa6hov6nthnm_2pbbJ35Y5_AX3ZDcOoV_0ieqOYkMYfQfLWA1ieZrChbu7Lwak3R2uPW9r3UvzoqCqgAfhR"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Service: Perfume Boxes -->
+<section class="py-24 bg-surface overflow-hidden">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+<div class="lg:col-span-5">
+<div class="mb-10">
+<h2 class="font-headline font-extrabold text-4xl md:text-5xl text-on-surface tracking-tight leading-tight">Perfume Boxes</h2>
+</div>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-12">Luxury scents deserve packaging that echoes their complexity. Our rigid structures and magnetic closures provide a sensory opening experience that defines brand prestige.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div class="p-6 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<h4 class="font-headline font-bold text-on-surface mb-2">Luxury Rigid</h4>
+<p class="text-sm text-on-surface-variant">Non-collapsible boxes for maximum protection and premium feel.</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="magnet" style="font-variation-settings: 'FILL' 1;">nest_cam_magnet_mount</span>
+<h4 class="font-headline font-bold text-on-surface mb-2">Magnetic</h4>
+<p class="text-sm text-on-surface-variant">Snap-secure magnetic closures for a sophisticated mechanical feel.</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="dashboard_customize" style="font-variation-settings: 'FILL' 1;">dashboard_customize</span>
+<h4 class="font-headline font-bold text-on-surface mb-2">Custom Inserts</h4>
+<p class="text-sm text-on-surface-variant">EVA foam, velvet, or card inserts tailored to fit your bottle perfectly.</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h4 class="font-headline font-bold text-on-surface mb-2">Finishing</h4>
+<p class="text-sm text-on-surface-variant">Spot UV, foil stamping, embossing, and soft-touch lamination.</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 flex justify-end">
+<div class="relative w-full max-w-2xl aspect-[4/5] bg-surface-container-high rounded-xl overflow-hidden group fade-slider-container" id="perfume-slider">
+<img alt="Luxury perfume box design" class="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0uiCwj5aAx8rknO2ODmADANMfC_a15fvMkc_r6ryAZgya-j_6GVaX1JPSNhZC3OrHwVwp857ZWSNlZnS46cfV8j-o7rpP8L8HVMayW_zs7-zVcN0rSJ8UlKKiSAa1nJZbagUzocys4Xbd51Wy9ULEJXAICmDe-eT_LMJM_9Mfdu_Tfl504vIjEW3kuKcUnWABE2WyEuzieZsbnB4VMJgdD6l3exoPZWGp4htFrNdEblYQDUMF6TXtRSEzMlbF172eAlCC7uyBv40bg"/>
+<img alt="Premium perfume box packaging" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0ugqNGvquR3oX74jDMZVxjyHya67DhKTu1WO9nRrmE3CR7r7GhWxyN8XLMK6_dc4MULSMl5O79V2LYOfxRXZ9qsX2zhh2hGM5yXXyqsWhSV1aujKxJ12jPFI64wQYjxtWiH9GEte687RrXmZ98pFyUc_0qnNGD6nYuaAzbWuTqvw7DmV2OEeiSVj___lK_JIYFiYRc-F_qx3SNLeRwhTPOoGjls_kJ6eGUSGKKrQ4OiMtHp2CespHYq9hVNMlQnibbnYr34QQe-fGg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+<script>
+                        (function() {
+                            const slider = document.getElementById('perfume-slider');
+                            const imgs = slider.getElementsByTagName('img');
+                            let current = 0;
+                            setInterval(() => {
+                                imgs[current].classList.replace('opacity-100', 'opacity-0');
+                                current = (current + 1) % imgs.length;
+                                imgs[current].classList.replace('opacity-0', 'opacity-100');
+                            }, 3000);
+                        })();
+                    </script>
+</div>
+</div>
+</div>
+</section>
+<!-- Service: Custom Bags -->
+<section class="py-24 bg-surface-container-low border-b border-outline-variant/30">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="font-headline font-extrabold text-4xl md:text-5xl text-on-surface tracking-tight">Custom Bags</h2>
+</div>
+<p class="text-on-surface-variant max-w-sm mb-2">Durable, stylish, and fully customizable. Our bags are designed to be mobile billboards for your luxury retail experience.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Premium Shopping Bags Slider -->
+<div class="group bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-xl transition-shadow border-b-4 border-transparent hover:border-primary">
+<div class="w-full aspect-square bg-surface-container mb-8 overflow-hidden rounded-lg relative fade-slider-container" id="bags-slider">
+<img alt="Luxury pink shopping bag" class="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0ujsZqOuRN0klv319-2MBnKansOkoghIRP11ryTEzZ--waEtIyWP89SWGWDCc5KWnllaZgAfL3TDZi-kWFnng6v7T2WhQMPdd7NJH02kpIWSBV6xfaKh_QSG4QhmdHLRO-mWrLG2uLb9nEOakTDA0Aj-NHVEa-cNvSjJohewS-IjUj41nqunsFHKoSqrWH7Tu8Paxfz1m_5j450DXwB7jXmihSsieUT7evwHRalb-cXXj54yFCe8hqm0BNHtiEOynZrFsNhlU1KCeA"/>
+<img alt="Minimalist white shopping bag" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0uhnylnRFZUfpwFX9dWW956a01nDiF2-027wW4QSav9BB7_HVXixcOz34NfKQ09BaSqAIVU_uOgpPi5IkQ9reyR0tFM7OuMTPSdpwL2lg8pxcifKL7cc5ATcj4Nl-0tzdYDCslOZyhNHkkjtub1kZ4uTkQaNTHfcGdQ9qOLETqsFlPnEbVGsfY6Ya8uasiKyFWr4EA9VUWE9h526RlwF9vCA1PT1w4W3FAQ0AQFD6wLHGBal86iXGjBizK1ao5UTYJg0W9dARQ4hGg"/>
+<img alt="Elegant floral shopping bag" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0ug77F4QctgvbUxqEl7eb33Ox31VjwN8Ubl2PUMeFxqpbfQ2sQjvzPqupUeb0qdUe1dDkkdTvuUnbCmcINrDLYI9FiczpBoUE5Vw-dACnDW_vqCtI5iYPumDJP5JJ7TAbt51A1upH9nxzIiQu_Z_OBgdRZYj5Lnm2Wbol9R_VjtcjULdN-zk4EMtD3T2rKaP3rZfURXf89Otl_IVnzdqGkqhh2RrQujocPQLqM2CZKHkeRLkuGpbg5AIY0rLhe3x75xG-YCq6R-R7A"/>
+</div>
+<script>
+                        (function() {
+                            const slider = document.getElementById('bags-slider');
+                            const imgs = slider.getElementsByTagName('img');
+                            let current = 0;
+                            setInterval(() => {
+                                imgs[current].classList.replace('opacity-100', 'opacity-0');
+                                current = (current + 1) % imgs.length;
+                                imgs[current].classList.replace('opacity-0', 'opacity-100');
+                            }, 3000);
+                        })();
+                    </script>
+<h3 class="font-headline font-bold text-2xl mb-4">Premium Paper Bags</h3>
+<p class="text-on-surface-variant leading-relaxed">High-caliber boutique bags featuring bespoke branding, vibrant finishes, and structural longevity for discerning retailers.</p>
+</div>
+<!-- Special Editions -->
+<div class="group bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-xl transition-shadow border-b-4 border-transparent hover:border-primary">
+<div class="w-full aspect-square bg-surface-container mb-8 overflow-hidden rounded-lg relative">
+<img alt="Omani Women's Day special edition" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Gh0EkXaVl1acp_vGBicizVUt9v8Bomy78AuBW_KExdmnGpMQd-cHyRPdTLCo-NdMMD91x3H4lgKWUPnRIHuKdXd8ALCJj5NQb2JLBa77NYXGHNdnkib7tbowpyv4LldjtsBhPSI1tIpJsRUCZBVE1TcOXLD4A_3QxpiGgZupw6DHBy8iBdNXf0q8OEXEUIoVRGVSRl47n59MrHPWBiHMMwIVrDKxpOlmnn4zB1ETp8-ttg4MOnQKj6vJN-NF7YWluUh6Ep0a-g"/>
+</div>
+<h3 class="font-headline font-bold text-2xl mb-4">Special Editions</h3>
+<p class="text-on-surface-variant leading-relaxed">Commemorative designs for cultural events and national milestones, blending tradition with modern luxury.</p>
+</div>
+<!-- Stickers & Gifts -->
+<div class="group bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-xl transition-shadow border-b-4 border-transparent hover:border-primary">
+<div class="w-full aspect-square bg-surface-container mb-8 overflow-hidden rounded-lg relative">
+<img alt="Stickers &amp; Gifts showcase" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uiJhNGBoB56WcZjw5e83t2_SrfYxIdE2RJ1RluO46itb8C033ZjJpHJcRdS1onRqodSbbhOuX64Q2Epoeh2izmx595knv3nGvXO8T2FXpv3pdTi2xgHHcz1T1dl1qkjKmc5gbKHBRKXFrmR4S5BjBpx491Fx56GPsVLmwDrMhETVO1ysRzh8GhXZVHGfJSgyRA5MYV_bsla4kBhBIXaE5Tp6IOY0GlH9RvsvmGJ8MMnAi94QKCZwqP_5gePpupeHlsVEt_mx80-XA"/>
+</div>
+<h3 class="font-headline font-bold text-2xl mb-4">Stickers &amp; Gifts</h3>
+<p class="text-on-surface-variant leading-relaxed">Bespoke accessories including branded stickers, ribbons, and gift accents that complete your brand's narrative.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Work Section -->
+<section class="py-24 bg-surface relative overflow-hidden">
+<div class="max-w-screen-2xl mx-auto px-8 relative z-10">
+<div class="mb-16 text-center">
+<h2 class="font-headline font-extrabold text-4xl md:text-5xl text-on-surface tracking-tight leading-tight">RECENT WORK</h2>
+</div>
+</div>
+<div class="circle-carousel-container" id="recent-work-carousel">
+<!-- Dynamic Circular Carousel with Portfolio Images -->
+<div class="carousel-circle active"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0ujCw8VE3Ys3mUu40-ZsXrQl6XbTuWn3GsTTeiP2eupXFDwjWmANyqM-B618d-fFL3IChbCpFOt_AhqyxlzF3jkYBJWAI-ucnk31fW5Hq7Q0J_jk5uo_Bwvv3jykAKl7jxH3OgajxsfVwww371dD1r-68TTsroSGWweWOsRfwcg-zsnjsAOsFW4dwGPxHf8R58awUmhYR-fIlZmffhj-MRzjWAae-vT0iYPAX-dlTofojyH_kpGZ44tyOOgmR5dNdi8hqALR56HRPg"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0uj_dQQ3Pkpsu0yfybMasCs3hHtpuMqYyyUDoUlO8yX-6M7BWsqIORMu8MxYF-J-eC5B3xA9HTOP2LOZvOrotqY6SlS0mldZ9Ws7WhOeASTZuwABoRKNOZITKdUQMPjy3fMyzYYYryK-EQnWGfqf57MWthTY-znm_MNVM1BNqxQ6xHqsIEhKtR5--tB_w4efYrFLAupZKWybFLVRqFOTwScF8zt4YgyFpKk6-_5CladrYE-ZF64vLxgPXUsY-mIlOJ1odU2Nkr0pBw"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0uie2cTPvjdv8zDkwyRTDUC4VDiPmkcy7me2e_VSLTuEZGd3In2RC4rcMN1GuSbw4Y_D4p1F-WS50vYj2KDeKnHk10pfOTF3WJA786SbfbYhrLBJ4HEYXnkhEfv8AI66C06J0e6_t1UAIPh939Gax70BBI1900-zuDT-fVZKsAAt2S48lRrcyh51VDQiq5Y0vbgcUFRtdY9PYK-rYynGYYWeG9QZMi31A-3PbBztMCNNwt3f_cVVNbqJnUgPDAx2aJeHMrG4pTZDQQ"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0uhoAs-TgrK-JkIgDNI7LSRMY_2gR816vPSxpv7CxgaUCwE7QUFbYeRshUYCEQh7sUvTO2msRSudg4IN6RQ0MLAw1PZaMTmTlTh3U48n09e2w1lS8lvAALb4C7XRD9v1wuPt38l5yWQR4WD8RakgaovaLW4x7g2oQXJvkiVCpoxEn87wcu1w4Gz_b0Kz668HmdrxL9rSsTAO0Pkc5yJgu4CKr_jES9wod5nUP7xtkOwy_l-lR_ToX46_jGnC6-WdXH8-EfPNqgLe"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Gh0EkXaVl1acp_vGBicizVUt9v8Bomy78AuBW_KExdmnGpMQd-cHyRPdTLCo-NdMMD91x3H4lgKWUPnRIHuKdXd8ALCJj5NQb2JLBa77NYXGHNdnkib7tbowpyv4LldjtsBhPSI1tIpJsRUCZBVE1TcOXLD4A_3QxpiGgZupw6DHBy8iBdNXf0q8OEXEUIoVRGVSRl47n59MrHPWBiHMMwIVrDKxpOlmnn4zB1ETp8-ttg4MOnQKj6vJN-NF7YWluUh6Ep0a-g"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0ujWHbFgj_NQsWRIFyH-f18Zl1Fc1rqpSyr90SCxdIDR1xa8uLfn5d7sNINQhWGFcV_4Z3eREjhjyGUr91U8WMZCnNcippJzr00CehLa3sMhpQ-p9QzAv45G-omNNABwPThRUymnhjTZZoGHCa0gnkUO7XF5f2la21QBMpAcJny6PluHqR12360adhFoyr2C07ICJB76mlC0rw8IjIjfa-PyIOz8oavhnmt0_upBckwy0cs2L-OTp78LpF5xHXug8jMJe9jdOR8Z"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0uj8v3HdIC7CV_fNYUbOyJ9JCAprBmq8A8jGKQW1sWU3_dvHBNBh3sTSqAzFLFgqnREq-rE7GckkBA4V2H8ytvAsLtSnx9cnDPeu8FpgBWzcqicyqqZPM7Via9ZksrZF9P_bQIvDuQxOfyNPrx14__1hepLCmJQUcLg8OyQbr7GuovQ04qdiM9ncIML-n0P5GD7ASrIQhoO-LJ44wq9pZso7F67-Qzwad8iCbsOYkzxa5J3H9fHYbTVODqGiw7DjqOL4JdXqhwg0yw"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0uiS8NGh8tQyEyTGvyYeJ2wkb9pbbz-5PpCJQbX4PMeWf-qE7LbJA3iEs-o8RrJmr2cU0tg7mucdb__QmLz13XKo6vi-Xy37KDamxQiYgT0WHr1sm2hfSvzqY-He6PBjSXU9ZNUdGKjyUeoB3Xn6UK0I1US2P-B8UFx7V9lp1KJr9_DMR26WPMsBXnRGpSWVzuuJcBjFxKbyaFKZ6ZBttF4OhO2YxCz5STbi7MvkrM1J_Tg-5OjlG6MBk_Y86__IOvTrZ-QYd-ct1w"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0ujnfmAl2mx5U_kxHvevz-tA9Bl4bjsDXGeaJjST2TBNCxGZGGm76SzbfXMuoulsF9XbiafqXYvhPK2Z4647lUwjDmg2xmZ-vYzCDHYbF70FhJ18WLH9aaDeb4Z4BEeFXmJ2fOPtLzU0a08HAPlLlXz55ZZZqzeRZ0gTXuWd8V8-mBm01-793QsMx9pWDC9cW-XCWCNB2ffPelNgeXnBJWKLGBlmQ4QLgX2RiMWtqYtoT2RYjiuyMmddZU0-IPvCC4PNkaueVSO1"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0uhCVZvihZpPzskuchS688WQCkpE8n18Yr0Wkzb4StzmC_FGEHrMQJP7DLF1tP_u9gNQigraM6lz0T_eyfzT2z290puJ0wuePlKb5kHRWUbBidnqFvvm6UVCMKm9d26l5OfOO_t1fv_GnCXmCbnywZAkd8_4BwjwxGYYQf6reHLgj70QMkX7lScSyHq4aLs14APNoH2FiLX2GtGYYx-ZZhHFS8zv5IyNiq-DL0JmwjNpF7RPWm17WqEvwuCDHtXm1B6Pv-HV4JgrOw"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0uidUeSLkJPkSW1NSglTrn_oZvjXAGuO4KXRe11U0qgniYxfPPFA3W8qpZTdHXDVpLwThjOZFuGz6TxU0x-RmucIddfaJjtzw6-yOklUlzPc0sLX7Umez4cEOaxZhufeoEOMoB5ECU8-OzZwXm1Bp4D3kKysAoVQvA1Gxrs9XyJMIznoZu_MZ-v9z-r6lanYuz-IQuVu6NqkCz4chg7ZYVre9SJpMD1VFCNMLuvrW_EHlZazuKPBrJRDEGpZmi1VidABCbxnZCMUnQ"/></div>
+<div class="carousel-circle"><img alt="Portfolio item" src="https://lh3.googleusercontent.com/aida/ADBb0ui5lnUkNbdYvqcgDXzkWW2B5arfcwTaGqI0gW4gbqNSsaG0FM58dZl4v3RpHeUssLsDUyFCmKH5C7wqb0s4_g13WZW4r5fb4iwepeccKUR2AkfKJURCbXqjCgWiHBSubHXwvn2RFdu4xbUpP_Ai3PZqGH6Tw6n1VqZ5YJY6h-RIx_hg3YxrKhy5YTrLU7nIzy-gjFW5m02Tx-UYx1dEJnGD3bgUl-NpWpT8gjJshIQgrN5AGC2vOjBmKZOUYMvsUqh7sC9DZ8wiiw"/></div>
+</div>
+<script>
+            (function() {
+                const circles = document.querySelectorAll('.carousel-circle');
+                let currentIndex = 0;
+
+                function nextSlide() {
+                    circles[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % circles.length;
+                    circles[currentIndex].classList.add('active');
+                }
+
+                setInterval(nextSlide, 3000);
+            })();
+        </script>
+</section>
+<!-- Process Section -->
+<section class="py-24 bg-primary text-on-primary relative overflow-hidden">
+<div class="absolute right-0 top-0 w-1/3 h-full bg-primary-container/20 -skew-x-12 translate-x-1/2"></div>
+<div class="max-w-screen-2xl mx-auto px-8 relative z-10">
+<div class="text-center mb-20">
+<h2 class="font-headline font-extrabold text-4xl md:text-5xl tracking-tight mb-4">The Alafrah Design Process</h2>
+<p class="text-primary-fixed opacity-80 max-w-xl mx-auto">From the first spark of inspiration to the final delivery at your doorstep, we manage every detail with surgical precision.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+<!-- Progress Line (Desktop) -->
+<div class="hidden md:block absolute top-1/4 left-[12%] right-[12%] h-[2px] bg-primary-container z-0"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center text-center p-8">
+<div class="w-20 h-20 bg-primary-container flex items-center justify-center rounded-full mb-8 shadow-lg ring-8 ring-primary">
+<span class="material-symbols-outlined text-on-primary-container text-3xl" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<h4 class="font-headline font-bold text-xl mb-3">Share your idea</h4>
+<p class="text-sm text-primary-fixed leading-relaxed opacity-70">Consult with our structural engineers and material experts to define your vision.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center text-center p-8">
+<div class="w-20 h-20 bg-primary-container flex items-center justify-center rounded-full mb-8 shadow-lg ring-8 ring-primary">
+<span class="material-symbols-outlined text-on-primary-container text-3xl" data-icon="draw" style="font-variation-settings: 'FILL' 1;">draw</span>
+</div>
+<h4 class="font-headline font-bold text-xl mb-3">Design approval</h4>
+<p class="text-sm text-primary-fixed leading-relaxed opacity-70">Review physical prototypes or high-fidelity 3D renders before we move to production.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center text-center p-8">
+<div class="w-20 h-20 bg-primary-container flex items-center justify-center rounded-full mb-8 shadow-lg ring-8 ring-primary">
+<span class="material-symbols-outlined text-on-primary-container text-3xl" data-icon="factory" style="font-variation-settings: 'FILL' 1;">factory</span>
+</div>
+<h4 class="font-headline font-bold text-xl mb-3">Production</h4>
+<p class="text-sm text-primary-fixed leading-relaxed opacity-70">State-of-the-art printing and hand-finishing by master craftsmen in our facility.</p>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 flex flex-col items-center text-center p-8">
+<div class="w-20 h-20 bg-primary-container flex items-center justify-center rounded-full mb-8 shadow-lg ring-8 ring-primary">
+<span class="material-symbols-outlined text-on-primary-container text-3xl" data-icon="local_shipping" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<h4 class="font-headline font-bold text-xl mb-3">Delivery</h4>
+<p class="text-sm text-primary-fixed leading-relaxed opacity-70">Rigorous quality control followed by global shipping to your warehouses or events.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-cyan-950 dark:bg-black w-full border-t-0">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-10 py-16 max-w-screen-2xl mx-auto">
+<div class="space-y-6">
+<div class="text-xl font-manrope font-extrabold text-white tracking-widest uppercase">
+<img alt="Alafrah Design Logo" class="h-14 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uiEBX3HxvSjxhGC6dX0zQrS9eQOxs2RNTATzuS-o1oNlCAxGxvN6uberioc8iMKJovBc62paLUw0bBNAjJGq5iM5acQtWKzLQH8doljdOQUaOcc7f-2W_xH5dR0ZAhhPL3_D65_g14O6EBlYrlZhrzWc3xS6q2fnEQMtTos868DoojOMQUBcCLeRIa6hov6nthnm_2pbbJ35Y5_AX3ZDcOoV_0ieqOYkMYfQfLWA1ieZrChbu7Lwak3R2uPW9r3UvzoqCqgAfhR"/>
+</div>
+<p class="text-cyan-200/70 font-inter text-sm leading-relaxed tracking-wide">© 2024 Alafrah Design. Precision in every impression.</p>
+</div>
+<div class="space-y-4">
+<h5 class="text-white font-medium font-headline uppercase tracking-widest text-xs mb-6">Contact Details</h5>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-cyan-200/70 text-sm font-inter">
+<span class="material-symbols-outlined text-xs" data-icon="call">call</span>
+                    Phone: +968 97704996
+                </li>
+<li class="flex items-center gap-3 text-cyan-200/70 text-sm font-inter">
+<a class="flex items-center gap-3 hover:text-white transition-colors" href="https://www.instagram.com/alafrah.des" rel="noopener noreferrer" target="_blank">
+<svg class="instagram-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+                        Instagram: @alafrah.des
+                    </a>
+</li>
+<li class="flex items-center gap-3 text-cyan-200/70 text-sm font-inter">
+<span class="material-symbols-outlined text-xs" data-icon="location_on">location_on</span>
+                    Location: Alkodth, Muscat, Oman
+                </li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="text-white font-medium font-headline uppercase tracking-widest text-xs mb-6">Connect</h5>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-cyan-800 flex items-center justify-center text-cyan-200 hover:bg-cyan-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="share">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-cyan-800 flex items-center justify-center text-cyan-200 hover:bg-cyan-800 transition-colors" href="https://www.instagram.com/alafrah.des" rel="noopener noreferrer" target="_blank">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+<div class="mt-8">
+<p class="text-xs text-cyan-500/50 uppercase tracking-[0.2em]">Crafted for high-end brands</p>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
