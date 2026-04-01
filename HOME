@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Manrope:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#cfe6f2",
+              "primary": "#137484", // Adjusted to match teal from logo
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "background": "#f8f9fa",
+              "on-primary-fixed-variant": "#137484",
+              "outline-variant": "#bec8cc",
+              "secondary-fixed-dim": "#b4cad6",
+              "surface-dim": "#d9dadb",
+              "primary-fixed": "#afecff",
+              "primary-fixed-dim": "#88d1e7",
+              "surface-container-low": "#f3f4f5",
+              "primary-container": "#0d5c69",
+              "error": "#ba1a1a",
+              "tertiary": "#6a3b05",
+              "tertiary-fixed": "#ffdcc1",
+              "on-surface": "#191c1d",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#86521d",
+              "inverse-on-surface": "#f0f1f2",
+              "surface-tint": "#137484",
+              "on-primary-container": "#99e3f9",
+              "on-error": "#ffffff",
+              "outline": "#6f797c",
+              "on-tertiary-fixed-variant": "#6a3b06",
+              "surface-variant": "#e1e3e4",
+              "on-primary-fixed": "#001f27",
+              "on-secondary-fixed": "#071e27",
+              "surface-container-high": "#e7e8e9",
+              "surface": "#f8f9fa",
+              "on-background": "#191c1d",
+              "inverse-primary": "#88d1e7",
+              "on-secondary-fixed-variant": "#354a53",
+              "on-surface-variant": "#3f484b",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#ffcfa7",
+              "on-secondary-container": "#526772",
+              "tertiary-fixed-dim": "#feb87a",
+              "on-primary": "#ffffff",
+              "surface-bright": "#f8f9fa",
+              "secondary": "#4c616c",
+              "inverse-surface": "#2e3132",
+              "surface-container": "#edeeef",
+              "on-tertiary-fixed": "#2e1600",
+              "secondary-container": "#cfe6f2",
+              "surface-container-highest": "#e1e3e4",
+              "on-error-container": "#93000a",
+              "dark-teal": "#0a4b55"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      
+      /* Entrance animations */
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .reveal {
+        opacity: 0;
+      }
+      .reveal.active {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      /* Fix text blurriness and ensure high contrast */
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+      h1, h2, h3, h4, p, span, a, button, label {
+        filter: none !important;
+        backdrop-filter: none !important;
+        text-shadow: none !important;
+      }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-white border-b border-surface-container-high">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-3">
+<img alt="Alafrah Design Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uiEBX3HxvSjxhGC6dX0zQrS9eQOxs2RNTATzuS-o1oNlCAxGxvN6uberioc8iMKJovBc62paLUw0bBNAjJGq5iM5acQtWKzLQH8doljdOQUaOcc7f-2W_xH5dR0ZAhhPL3_D65_g14O6EBlYrlZhrzWc3xS6q2fnEQMtTos868DoojOMQUBcCLeRIa6hov6nthnm_2pbbJ35Y5_AX3ZDcOoV_0ieqOYkMYfQfLWA1ieZrChbu7Lwak3R2uPW9r3UvzoqCqgAfhR"/>
+<span class="text-xl font-headline font-extrabold tracking-tight text-dark-teal">Alafrah Design</span>
+</div>
+<nav class="hidden md:flex gap-10">
+<a class="font-headline font-bold text-sm uppercase tracking-wider text-primary border-b-2 border-primary pb-1" href="#">Home</a>
+<a class="font-headline font-bold text-sm uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="font-headline font-bold text-sm uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
+</nav>
+<div class="w-10"></div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[650px] flex items-center overflow-hidden bg-primary text-on-primary">
+<div class="absolute inset-0">
+<div class="absolute inset-0 bg-gradient-to-r from-dark-teal/60 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-screen-2xl mx-auto px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center reveal active">
+<div class="space-y-8">
+<span class="inline-block py-1.5 px-4 rounded-full bg-primary-container text-white text-[10px] font-black tracking-[0.2em] uppercase">
+                    Precision Printing
+                </span>
+<h1 class="font-headline font-extrabold text-5xl md:text-7xl leading-[1.1] tracking-tight text-white antialiased subpixel-antialiased tracking-tight" style="filter: none !important; backdrop-filter: none !important; -webkit-font-smoothing: antialiased;">
+                    Premium Packaging That Elevates Your Brand
+                </h1>
+<p class="text-lg md:text-xl text-primary-fixed leading-relaxed max-w-xl font-medium">
+                    We transform your brand's vision into tactile reality with bespoke printing solutions and architectural packaging design.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-white text-dark-teal px-10 py-4 font-headline font-bold text-sm uppercase tracking-wider rounded-lg shadow-lg hover:bg-primary-fixed transition-all active:scale-95">
+                        View Services
+                    </button>
+<button class="border-2 border-white text-white px-10 py-4 font-headline font-bold text-sm uppercase tracking-wider rounded-lg hover:bg-white/10 transition-all active:scale-95">
+                        Contact Us
+                    </button>
+</div>
+</div>
+<div class="hidden lg:flex justify-center items-center relative">
+<div class="w-full max-w-md aspect-square overflow-hidden flex items-center justify-center bg-transparent border-2 border-white rounded-xl p-2">
+<img alt="Alafrah Design Brand Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uiEBX3HxvSjxhGC6dX0zQrS9eQOxs2RNTATzuS-o1oNlCAxGxvN6uberioc8iMKJovBc62paLUw0bBNAjJGq5iM5acQtWKzLQH8doljdOQUaOcc7f-2W_xH5dR0ZAhhPL3_D65_g14O6EBlYrlZhrzWc3xS6q2fnEQMtTos868DoojOMQUBcCLeRIa6hov6nthnm_2pbbJ35Y5_AX3ZDcOoV_0ieqOYkMYfQfLWA1ieZrChbu7Lwak3R2uPW9r3UvzoqCqgAfhR"/>
+</div>
+<div class="absolute -bottom-10 -right-10 w-40 h-40 border-r-8 border-b-8 border-primary-fixed/20"></div>
+</div>
+</div>
+</section>
+<!-- Services Overview -->
+<section class="py-24 px-8 max-w-screen-2xl mx-auto reveal">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 border-b border-surface-container-high pb-8">
+<div class="max-w-2xl">
+<label class="text-primary font-black text-[10px] uppercase tracking-[0.3em] mb-4 block">Our Specialties</label>
+<h2 class="font-headline font-extrabold text-4xl text-on-surface">Curated Solutions for High-End Brands</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<!-- Service 1 -->
+<div class="group bg-white border border-surface-container-high rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="Perfume Boxes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uhoAs-TgrK-JkIgDNI7LSRMY_2gR816vPSxpv7CxgaUCwE7QUFbYeRshUYCEQh7sUvTO2msRSudg4IN6RQ0MLAw1PZaMTmTlTh3U48n09e2w1lS8lvAALb4C7XRD9v1wuPt38l5yWQR4WD8RakgaovaLW4x7g2oQXJvkiVCpoxEn87wcu1w4Gz_b0Kz668HmdrxL9rSsTAO0Pkc5yJgu4CKr_jES9wod5nUP7xtkOwy_l-lR_ToX46_jGnC6-WdXH8-EfPNqgLe"/>
+</div>
+<div class="p-8">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="featured_seasonal">featured_seasonal_and_gifts</span>
+</div>
+<h3 class="font-headline font-bold text-2xl mb-4 text-dark-teal">Perfume Boxes</h3>
+<p class="text-on-surface-variant mb-8 leading-relaxed">Luxury rigid boxes with custom inserts, foil stamping, and textured finishes designed for high-end fragrances.</p>
+<a class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider hover:gap-4 transition-all" href="#">
+                        Learn More <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service 2 -->
+<div class="group bg-white border border-surface-container-high rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="Custom Bags" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ujsZqOuRN0klv319-2MBnKansOkoghIRP11ryTEzZ--waEtIyWP89SWGWDCc5KWnllaZgAfL3TDZi-kWFnng6v7T2WhQMPdd7NJH02kpIWSBV6xfaKh_QSG4QhmdHLRO-mWrLG2uLb9nEOakTDA0Aj-NHVEa-cNvSjJohewS-IjUj41nqunsFHKoSqrWH7Tu8Paxfz1m_5j450DXwB7jXmihSsieUT7evwHRalb-cXXj54yFCe8hqm0BNHtiEOynZrFsNhlU1KCeA"/>
+</div>
+<div class="p-8">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<h3 class="font-headline font-bold text-2xl mb-4 text-dark-teal">Custom Bags</h3>
+<p class="text-on-surface-variant mb-8 leading-relaxed">Premium paper bags with reinforced handles and bespoke printing, perfect for high-street retail and luxury boutiques.</p>
+<a class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider hover:gap-4 transition-all" href="#">
+                        Learn More <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service 3 -->
+<div class="group bg-white border border-surface-container-high rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="Custom Stickers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ug-TRPIop8u60N4Yj-n7-enXCCOkXeVZMX3I1EmRGgh2WeEM4ka4V_l9G8x8KAMtIxJ--5LBwj_SSGv4ZsCBugS7DbBmDDayqJ8hkTQtCiAY12RJYG5zC7hwl3l0o428XyVlvmL6uZVee4Q1G0YN_LH9LD_KIWFVifTA2jVcX7coNzjTGoIBQD8rOHwrt0EKt-1ZxtpYQeXGTCLI8sIziSVcchyV98McDiGHPbHcVrBeAkdXX8nCMhzO0NiqWgcI14x1TNTvUjgeQ"/>
+</div>
+<div class="p-8">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="label">label</span>
+</div>
+<h3 class="font-headline font-bold text-2xl mb-4 text-dark-teal">Custom Stickers</h3>
+<p class="text-on-surface-variant mb-8 leading-relaxed">High-quality custom stickers and labels with various finishes, perfect for branding, product packaging, and promotional use.</p>
+<a class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider hover:gap-4 transition-all" href="#">
+                        Learn More <span class="material-symbols-outlined text-sm" data-icon="label">label</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Satisfied Customers Section -->
+<section class="py-24 bg-dark-teal overflow-hidden relative reveal">
+<div class="max-w-screen-2xl mx-auto px-8 relative z-10">
+<div class="flex flex-col items-center text-center">
+<label class="text-primary-fixed font-black text-[10px] uppercase tracking-[0.4em] mb-6 block opacity-80">Our Impact</label>
+<h2 class="font-headline font-extrabold text-4xl md:text-5xl text-white mb-16 max-w-4xl uppercase tracking-tight">TRUSTED BY BRANDS TO DELIVER EXCELLENCE AT SCALE</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-5xl items-center justify-items-center">
+<div class="flex flex-col items-center">
+<div class="text-primary-fixed mb-6">
+<span class="material-symbols-outlined text-5xl" data-icon="groups">groups</span>
+</div>
+<div class="text-6xl md:text-8xl font-headline font-black text-white tracking-tighter mb-4" id="customer-counter">0</div>
+<p class="text-primary-fixed text-xs font-black uppercase tracking-[0.2em]">Satisfied Customers</p>
+</div>
+<div class="hidden md:block w-px h-40 bg-white/10"></div>
+<div class="flex flex-col items-center">
+<div class="text-primary-fixed mb-6">
+<span class="material-symbols-outlined text-5xl" data-icon="package_2">package_2</span>
+</div>
+<div class="text-6xl md:text-8xl font-headline font-black text-white tracking-tighter mb-4" id="items-counter">0</div>
+<p class="text-primary-fixed text-xs font-black uppercase tracking-[0.2em]">Items Produced</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+            function animateCounter(elementId, target, suffix) {
+                const element = document.getElementById(elementId);
+                const duration = 2000; 
+                let startTimestamp = null;
+
+                function step(timestamp) {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const currentCount = Math.floor(progress * target);
+                    
+                    if (progress < 1) {
+                        element.innerText = currentCount.toLocaleString();
+                        window.requestAnimationFrame(step);
+                    } else {
+                        element.innerText = (target / 1000) + suffix;
+                    }
+                }
+
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        window.requestAnimationFrame(step);
+                        observer.unobserve(entries[0].target);
+                    }
+                }, { threshold: 0.5 });
+
+                observer.observe(element);
+            }
+
+            animateCounter('customer-counter', 10000, 'k+');
+            animateCounter('items-counter', 15000, 'k+');
+        </script>
+</section>
+<!-- Why Choose Us -->
+<section class="bg-white py-24 px-8 overflow-hidden reveal">
+<div class="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative">
+<img alt="Printing Process Detail" class="rounded-2xl shadow-2xl relative z-10 w-full h-[550px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyDwKp_3sHvcx7KmkCnUYXcbz-26xHIwwZ3o-p6NJ5AfaqgJ69iYCjvHyjiOo3utMICAbpCuiMRrDplXfrv0n1CdB20OxS6M-fkfRtAkRfZ-K9ZKh5w2TV-FWEQekGVAX07ZtgtmCiFkyOIqJD8keUCIR8r9nKMZwpT1DC6o4UIxweIN5-0ZFWzj3GQx8N8iZwOnXD0P9sLITjR05Pb1HjeqldRULHpYQg96rwLWX2zssJXs_0-6f0YJgEKAPG38Ltxc1-IEbIXEs"/>
+<div class="absolute -bottom-8 -right-8 bg-primary p-10 rounded-xl text-on-primary z-20 shadow-2xl hidden md:block border border-white/10">
+<p class="text-5xl font-headline font-black text-white">20+</p>
+<p class="text-[10px] uppercase tracking-[0.3em] font-black mt-2">Years of Excellence</p>
+</div>
+</div>
+<div class="space-y-12">
+<div>
+<h2 class="font-headline font-extrabold text-4xl mb-6 leading-tight text-dark-teal">Engineered Excellence in Every Impression</h2>
+<p class="text-on-surface-variant text-lg font-medium leading-relaxed">We don't just print; we manufacture brand experiences. Our commitment to technical superiority ensures your packaging stands as a testament to quality.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+<div class="space-y-3">
+<span class="material-symbols-outlined text-primary font-bold text-3xl" data-icon="verified">verified</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">High-quality materials</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Sustainable, premium papers and substrates sourced globally.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-primary font-bold text-3xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">Modern technology</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">The latest offset and digital printing presses for perfect color matching.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-primary font-bold text-3xl" data-icon="architecture">architecture</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">Custom design support</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Structural engineers and designers to bring your complex ideas to life.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-primary font-bold text-3xl" data-icon="local_shipping">local_shipping</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">Fast delivery</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Optimized logistics network for timely local and international shipments.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Portfolio Section -->
+<section class="py-24 px-8 max-w-screen-2xl mx-auto reveal">
+<div class="text-center mb-16 space-y-4">
+<label class="text-primary font-black text-[10px] uppercase tracking-[0.4em]">Portfolio</label>
+<h2 class="font-headline font-extrabold text-4xl text-dark-teal">Recent Impressions</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Image 1 -->
+<div class="group overflow-hidden rounded-2xl bg-white border border-surface-container-high p-4 shadow-sm hover:shadow-2xl transition-all duration-500">
+<div class="overflow-hidden rounded-xl aspect-square">
+<img alt="Omani Women's Day Luxury Bags" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0ug3Gh0EkXaVl1acp_vGBicizVUt9v8Bomy78AuBW_KExdmnGpMQd-cHyRPdTLCo-NdMMD91x3H4lgKWUPnRIHuKdXd8ALCJj5NQb2JLBa77NYXGHNdnkib7tbowpyv4LldjtsBhPSI1tIpJsRUCZBVE1TcOXLD4A_3QxpiGgZupw6DHBy8iBdNXf0q8OEXEUIoVRGVSRl47n59MrHPWBiHMMwIVrDKxpOlmnn4zB1ETp8-ttg4MOnQKj6vJN-NF7YWluUh6Ep0a-g"/>
+</div>
+<div class="mt-6 px-2 pb-2">
+<p class="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Luxury Packaging</p>
+<h4 class="font-headline font-bold text-xl text-dark-teal mt-1">Omani Women's Day Edition</h4>
+</div>
+</div>
+<!-- Image 2 -->
+<div class="group overflow-hidden rounded-2xl bg-white border border-surface-container-high p-4 shadow-sm hover:shadow-2xl transition-all duration-500">
+<div class="overflow-hidden rounded-xl aspect-[4/5]">
+<img alt="Floral Print Gift Box" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0ujWHbFgj_NQsWRIFyH-f18Zl1Fc1rqpSyr90SCxdIDR1xa8uLfn5d7sNINQhWGFcV_4Z3eREjhjyGUr91U8WMZCnNcippJzr00CehLa3sMhpQ-p9QzAv45G-omNNABwPThRUymnhjTZZoGHCa0gnkUO7XF5f2la21QBMpAcJny6PluHqR12360adhFoyr2C07ICJB76mlC0rw8IjIjfa-PyIOz8oavhnmt0_upBckwy0cs2L-OTp78LpF5xHXug8jMJe9jdOR8Z"/>
+</div>
+<div class="mt-6 px-2 pb-2">
+<p class="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Bespoke Print</p>
+<h4 class="font-headline font-bold text-xl text-dark-teal mt-1">Floral Motif Rigid Box</h4>
+</div>
+</div>
+<!-- Image 3 -->
+<div class="group overflow-hidden rounded-2xl bg-white border border-surface-container-high p-4 shadow-sm hover:shadow-2xl transition-all duration-500">
+<div class="overflow-hidden rounded-xl aspect-[9/16]">
+<img alt="Custom Stickers" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0ujA4IDicMTIVzegiLl_J7ir3M8C_kAWl_quucfVc5wurYcY_YABth8yyzuUMcfJh6mVneZKuQkpFgw5_muTYRrGpxBwLI-wVgsKgB9Jc_uNkARuAOzy0MetX3mRqimKG0GgYSpKYir5WZOWtV8bXYX4eD9Rc9XcM3s1Ee9MqdCBRlnBSnXQZTECqpeNtcEa83EV6xaVR3kuAhtTkLjaPPmdcXSHLWqfGqFwFyrcda6pgusJcLUzOQ5dw0zjgCmmjiEeuW-v_sRHBw"/>
+</div>
+<div class="mt-6 px-2 pb-2">
+<p class="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Special Edition</p>
+<h4 class="font-headline font-bold text-xl text-dark-teal mt-1">Illustrated Bag</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-screen-2xl mx-auto px-8 mb-24 reveal">
+<div class="bg-primary-container rounded-3xl p-12 md:p-20 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl border border-white/5">
+<div class="relative z-10 max-w-xl">
+<h2 class="font-headline font-extrabold text-4xl md:text-5xl text-white mb-6 leading-tight">Start your packaging project today</h2>
+<p class="text-white/90 text-lg font-medium">Partner with Alafrah Design for precision, quality, and an unyielding commitment to your brand's image.</p>
+</div>
+<div class="relative z-10">
+<button class="bg-white text-dark-teal px-12 py-5 font-headline font-black text-sm uppercase tracking-widest rounded-lg shadow-2xl hover:bg-primary-fixed transition-all active:scale-95">
+                    Contact Us Now
+                </button>
+</div>
+<div class="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 transform origin-top-right"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-dark-teal text-white font-body text-sm leading-relaxed tracking-wide w-full border-t border-white/10">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-16 px-10 py-20 max-w-screen-2xl mx-auto reveal">
+<div class="space-y-8">
+<div class="flex items-center gap-3">
+<img alt="Alafrah Design Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uiEBX3HxvSjxhGC6dX0zQrS9eQOxs2RNTATzuS-o1oNlCAxGxvN6uberioc8iMKJovBc62paLUw0bBNAjJGq5iM5acQtWKzLQH8doljdOQUaOcc7f-2W_xH5dR0ZAhhPL3_D65_g14O6EBlYrlZhrzWc3xS6q2fnEQMtTos868DoojOMQUBcCLeRIa6hov6nthnm_2pbbJ35Y5_AX3ZDcOoV_0ieqOYkMYfQfLWA1ieZrChbu7Lwak3R2uPW9r3UvzoqCqgAfhR"/>
+<span class="text-2xl font-headline font-extrabold text-white tracking-tight">Alafrah Design</span>
+</div>
+<p class="text-white/80 font-medium max-w-xs leading-relaxed">Precision in every impression. Alafrah Design delivers luxury packaging solutions for brands that demand excellence since 2004.</p>
+</div>
+<div class="space-y-8">
+<h4 class="text-white font-black uppercase tracking-[0.2em] text-[10px]">Contact Info</h4>
+<ul class="space-y-5">
+<li class="flex items-center gap-4 group">
+<span class="material-symbols-outlined text-primary-fixed text-xl" data-icon="call">call</span>
+<span class="text-white/90 font-semibold group-hover:text-primary-fixed transition-colors">+968 97704996</span>
+</li>
+<li class="flex items-center gap-4 group">
+<a class="flex items-center gap-4 text-white/90 font-semibold group-hover:text-primary-fixed transition-colors underline underline-offset-8 decoration-primary-fixed/30 hover:decoration-primary-fixed transition-all" href="https://www.instagram.com/alafrah.des" target="_blank">
+<svg class="w-5 h-5 fill-current text-primary-fixed" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+</svg>
+    alafrah.des
+  </a>
+</li>
+<li class="flex items-center gap-4 group">
+<span class="material-symbols-outlined text-primary-fixed text-xl" data-icon="location_on">location_on</span>
+<span class="text-white/90 font-semibold">Alkodth, Muscat, Oman</span>
+</li>
+</ul>
+</div>
+<div class="space-y-8">
+<h4 class="text-white font-black uppercase tracking-[0.2em] text-[10px]">Newsletter</h4>
+<p class="text-white/80 text-sm font-medium">Stay updated with our latest packaging innovations and technical print insights.</p>
+<div class="flex">
+<input class="bg-white/5 border border-white/10 rounded-l-lg px-5 py-4 text-white placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-primary w-full" placeholder="Email address" type="email"/>
+<button class="bg-primary px-6 py-4 rounded-r-lg hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-white font-bold" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-10 py-10 border-t border-white/10 max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] text-white/50 font-black uppercase tracking-[0.1em]">
+<p>© 2024 Alafrah Design. Precision in every impression.</p>
+<div class="flex gap-10">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script>
+    // Reveal animation on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+        reveals.forEach(reveal => {
+            const windowHeight = window.innerHeight;
+            const revealTop = reveal.getBoundingClientRect().top;
+            const revealPoint = 150;
+            if (revealTop < windowHeight - revealPoint) {
+                reveal.classList.add('active');
+            }
+        });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Initial check
+</script>
+</body></html>
+# Design System Strategy: Precision & Depth
+
+## 1. Overview & Creative North Star
+
+The **Creative North Star** for this design system is **"The Architectural Press."** 
+
+In the world of high-end printing and packaging, every millimeter matters. This design system moves away from "web-native" generic layouts and adopts an editorial, structural approach. We treat the digital interface like a premium piece of embossed stationary: tactile, layered, and meticulously organized. 
+
+By leveraging intentional asymmetry, oversized typography, and a "Tonal Layering" philosophy, we create an experience that feels as curated as a custom-printed luxury box. We break the grid not through chaos, but through calculated white space (using the `20` and `24` spacing tokens) to let elements breathe, signaling a brand that values quality over quantity.
+
+---
+
+## 2. Colors
+
+The palette is derived from the signature dark cyan/teal of the logo, expanded into a sophisticated range of surface tiers.
+
+### The Palette
+*   **Primary (`#004e5d`):** Our foundation. Used for high-impact brand moments and heavy tonal sections.
+*   **Primary Container (`#08677a`):** Used for interactive elements that need to stand out against the deep primary backgrounds.
+*   **Surface & Neutrals:** We use a "Cool Slate" range (`#f8f9fa` to `#d9dadb`) to provide a clean, clinical contrast to the rich teal, emphasizing precision.
+
+### The "No-Line" Rule
+To maintain a high-end corporate feel, **1px solid borders for sectioning are strictly prohibited.** Do not use lines to separate content. Boundaries must be defined solely through background color shifts. For example, a `surface-container-low` section sitting on a `surface` background creates a clear, sophisticated boundary without the visual "noise" of a stroke.
+
+### Surface Hierarchy & Nesting
+Treat the UI as a series of physical layers. Use the `surface-container` tiers (Lowest to Highest) to create depth.
+*   **Base:** `surface`
+*   **Nested Content:** `surface-container-low`
+*   **Floating Elements:** `surface-container-lowest` (pure white `#ffffff`) to create a "lifted" paper effect.
+
+### The "Glass & Gradient" Rule
+For hero sections and floating navigation, use **Glassmorphism**. Apply semi-transparent surface colors with a `backdrop-filter: blur(20px)`. To add "soul" to the interface, use subtle linear gradients transitioning from `primary` to `primary_container` (e.g., at a 135-degree angle) for large CTAs and background accents.
+
+---
+
+## 3. Typography
+
+The typography strategy pairs the geometric precision of **Manrope** for headings with the high-legibility of **Inter** for functional text.
+
+*   **Display & Headlines (Manrope):** Use `display-lg` (3.5rem) and `headline-lg` (2rem) to create an editorial feel. These should be set with tight letter-spacing (-0.02em) to feel "pressed" and authoritative.
+*   **Body & Labels (Inter):** All functional information uses Inter. `body-lg` (1rem) is the standard for prose. 
+*   **Hierarchy as Identity:** Use high-contrast scaling. A small `label-md` (0.75rem) in all-caps with increased letter-spacing (0.05em) placed next to a `display-md` title creates a "spec-sheet" aesthetic that mirrors the precision of the printing industry.
+
+---
+
+## 4. Elevation & Depth
+
+We avoid traditional material shadows in favor of **Tonal Layering**.
+
+*   **The Layering Principle:** Depth is achieved by stacking. Place a `surface-container-lowest` card on a `surface-container-low` background. This creates a "soft lift" that feels architectural rather than digital.
+*   **Ambient Shadows:** If a floating effect is required (e.g., a primary action button or a modal), use an ultra-diffused shadow: `box-shadow: 0 20px 40px rgba(0, 78, 93, 0.08)`. The shadow uses a tint of the `on-surface` or `primary` color, never pure black.
+*   **The "Ghost Border" Fallback:** If a container requires definition on a complex background, use the `outline-variant` token at **15% opacity**. 
+*   **Interactivity:** On hover, instead of a heavy shadow, shift the background color one tier higher (e.g., from `surface-container-high` to `surface-container-highest`).
+
+---
+
+## 5. Components
+
+### Buttons
+*   **Primary:** Background `primary`, text `on-primary`. Shape: `md` (0.375rem). Use for the main call to action.
+*   **Secondary:** Background `surface-container-high`, text `primary`. Use for supporting actions.
+*   **Tertiary:** No background. Text `primary` with an underline that appears only on hover.
+
+### Cards
+*   **Rule:** Forbid divider lines.
+*   **Layout:** Use `padding: 1.5rem` (`6` spacing). Use `surface-container-lowest` to make cards "pop" against `surface` or `surface-dim` backgrounds. 
+*   **Asymmetry:** Experiment with placing typography flush to the left while keeping icons or decorative "print marks" to the extreme right.
+
+### Input Fields
+*   **Style:** Minimalist. Use `surface-container-low` as the background fill. Use a bottom-only "Ghost Border" (2px) using `primary` only when the field is focused.
+*   **Labels:** Use `label-md` in `on-surface-variant`, always positioned above the field, never as placeholder text.
+
+### Chips & Tags
+*   **Style:** Pill-shaped (`full` roundedness). Use `secondary-container` backgrounds with `on-secondary-container` text for a subtle, professional look.
+
+---
+
+## 6. Do's and Don'ts
+
+### Do
+*   **Do** use large amounts of white space (`16`, `20`, `24` spacing tokens) to signal luxury.
+*   **Do** align text to a strict vertical axis to mimic professional typesetting.
+*   **Do** use `primary` (Teal) as a background for high-conversion sections, paired with `on-primary` (White) text for maximum impact.
+
+### Don't
+*   **Don't** use 100% black. Use `on-surface` (`#191c1d`) for all "black" text to maintain tonal softness.
+*   **Don't** use standard "drop shadows" with high opacity. 
+*   **Don't** use sharp corners (`none`). Always use at least the `DEFAULT` (0.25rem) or `md` (0.375rem) roundedness to soften the corporate edge.
+*   **Don't** use dividers or lines to separate list items; use a `surface-variant` background shift on hover or `1rem` of vertical breathing room.
